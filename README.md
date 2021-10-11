@@ -1,4 +1,4 @@
-# yappr
+# yappR
 An R Wrapper for YAP
 
 ## Download and install
@@ -7,6 +7,7 @@ An R Wrapper for YAP
 ## How to use
 This a wrapper for YAP API. You should get you own API token from:
 https://nlp.biu.ac.il/~rtsarfaty/onlp/hebrew/about
+https://www.langndata.com/heb_parser/register
 
 Then use:
 
