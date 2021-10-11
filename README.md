@@ -1,4 +1,4 @@
-# yappR
+# yappR <img src="hex-yappR-png.png" align="right" width="120" />
 An R Wrapper for YAP API
 
 ## Download and install
