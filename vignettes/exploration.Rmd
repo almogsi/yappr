@@ -1,0 +1,69 @@
+---
+title: "exploration"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{exploration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(yappr)
+```
+
+<!--
+
+# Description of your package
+
+This will fill the description of your package.
+Add this chunk using `fusen::description_chunk()`
+--> 
+
+
+# Use YAP
+
+# Extract Lemmas
+
+```{r examples-1}
+text <- "גנן גידל דגן בגן"
+token <- "YourAPIToken"
+yap_list <- yap(text, token)
+yap_lemmas(yap_list)
+```
+
+```{r examples-2}
+text <- "גנן גידל דגן בגן"
+token <- "YourAPIToken"
+yap_list <- yap(text, token)
+dep_conll(yap_list)
+```
+
+```{r examples-3}
+text <- "גנן גידל דגן בגן"
+token <- "YourAPIToken"
+yap_list <- yap(text, token)
+dep_lattice(yap_list)
+```
+
+# There can be development actions
+
+These will be included in the `dev_history.R` file of your package, but won't be direct part of it.
+
+
+# Inflate your package
+
+You're one inflate from paper to box.
+Build your package from this very Rmarkdown using `fusen::inflate()`
+
+- Verify your `"DESCRIPTION"` file has been updated
+- Verify your function is in `"R/"` directory
+- Verify your test is in `"tests/testthat/"` directory
+- Verify this Rmd appears in `"vignettes/"` directory
+
