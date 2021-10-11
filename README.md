@@ -24,6 +24,6 @@ Then use:
 `dep_lattice(yap_list) #get Lattice style dependency tree`
 
 
-## Adapted from:
+## Who did the real work:
 
 More, A., Seker, A., Basmova, V., & Tsarfaty, R. (2019). Joint transition-based models for morpho-syntactic parsing: Parsing strategies for MRLs and a case study from modern Hebrew. Transactions of the Association for Computational Linguistics, 7, 33-48.
