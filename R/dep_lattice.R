@@ -19,6 +19,6 @@ dep_lattice <- function(x){
                           "num_2", "num_last",
                           "num_s_p", "per", "pos", "pos_2",
                           "tense", "word"))
-  return(tbl %>% 
-           dplyr::mutate(dplyr::across(dplyr::everything(), unlist)))
+  return(dplyr::`%>%`(tbl, 
+           dplyr::mutate(dplyr::across(dplyr::everything(), unlist))))
 }
