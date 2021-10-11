@@ -1,5 +1,5 @@
 # yappR
-An R Wrapper for YAP
+An R Wrapper for YAP API
 
 ## Download and install
 `remotes::install_github("almogsi/yappr")`
