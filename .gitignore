@@ -1,0 +1,31 @@
+# R
+.Rproj.user
+.Rhistory
+.Rdata
+.RData
+.httr-oauth
+*.Rproj
+.Renviron
+.Ruserdata
+
+# build artifacts
+/doc/
+/Meta/
+*.tar.gz
+inst/doc
+/docs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ad-hoc files from debugging
+R/_test.txt
+*.bak
+
+# internal working notes -- keep out of the public repo
+notes.md

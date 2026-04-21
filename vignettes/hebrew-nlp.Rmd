@@ -1,0 +1,79 @@
+---
+title: "Hebrew NLP with YAP in the quanteda workflow"
+output: rmarkdown::html_vignette
+vignette: >
+  %\\VignetteIndexEntry{Hebrew NLP with YAP in the quanteda workflow}
+  %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  eval     = FALSE
+)
+```
+
+## Why this package exists
+
+Hebrew is a morphologically rich language: a single orthographic word can
+package several morphemes (definite article, prepositions, pronominal
+suffixes, etc.). Most R text-analysis pipelines assume English-shaped tokens,
+which means bag-of-words on raw Hebrew tokens gives you a matrix dominated by
+inflectional variants of the same lemma.
+
+[YAP](https://github.com/OnlpLab/yap) (Yet Another Parser) is the open-source
+morphological analyzer, disambiguator, and dependency parser for Hebrew.
+`yappr` wraps it so you can call it from R and feed the result into
+[`quanteda`](https://quanteda.io) the same way you\'d use `spacyr` for English.
+
+## Installation
+
+See the README for the full install (Windows users need WSL).
+
+## The flow
+
+```{r}
+library(yappr)
+library(quanteda)
+
+texts <- c(
+  doc1 = "\u05D4\u05D9\u05DC\u05D3\u05D9\u05DD \u05D4\u05DC\u05DB\u05D5 \u05DC\u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8.",
+  doc2 = "\u05D4\u05D9\u05D5\u05DD \u05D9\u05D5\u05DD \u05D9\u05E4\u05D4 \u05D5\u05D0\u05E0\u05D7\u05E0\u05D5 \u05E9\u05DE\u05D7\u05D9\u05DD."
+)
+
+parsed <- yap_parse(texts, dependency = TRUE)
+parsed
+```
+
+Each row is a **morpheme**, not an orthographic token. `token_id` is 1..n
+within each sentence; `sentence_id` is 1..m within each document.
+
+## Lemmatized DFM in one call
+
+```{r}
+# Hebrew-aware pipeline: lemma + content POS + stopwords + punct strip
+d <- yap_to_dfm(texts, heb_lemma = TRUE)
+topfeatures(d, 10)
+```
+
+Turn off individual pieces as needed:
+
+```{r}
+yap_to_dfm(texts,
+           heb_lemma = TRUE,
+           remove_stopwords = FALSE,          # keep function words
+           pos_keep = c("NN","VB"))           # nouns + verbs only
+```
+
+## Using dependency parses
+
+With `dependency = TRUE`, the parsed data frame carries `head_token_id` and
+`deprel`. Ordinary tabular data \u2014 anything you can do with `dplyr`, you can
+do here:
+
+```{r}
+subset(parsed, deprel == "subj",
+       select = c(doc_id, sentence_id, token, lemma))
+```

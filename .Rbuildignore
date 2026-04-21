@@ -1,0 +1,13 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^\.github$
+^docs$
+^_pkgdown\.yml$
+^pkgdown$
+^notes\.md$
+^\.vscode$
+^cran-comments\.md$
+^R/_test\.txt$
+^\.gitignore$

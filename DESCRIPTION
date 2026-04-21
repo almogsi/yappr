@@ -1,0 +1,51 @@
+Package: yappr
+Type: Package
+Title: Hebrew NLP in R via YAP, in the 'quanteda' Workflow
+Version: 0.1.0
+Authors@R: person(given = "Almog",
+                  family = "Simchon",
+                  role = c("aut", "cre"),
+                  email = "almogsi@post.bgu.ac.il")
+Description: An R client for YAP (Yet Another Parser), the open-source
+    morphological analyzer, disambiguator, and dependency parser for Hebrew
+    developed by the ONLP Lab (<https://github.com/OnlpLab/yap>). The package
+    talks to a local YAP server over loopback HTTP and exposes a
+    'spacyr'-style tidy data frame that plugs directly into the 'quanteda'
+    ecosystem via 'as.tokens()'. Includes a one-shot Hebrew-aware DFM builder
+    that lemmatizes, filters by part of speech, strips punctuation, and
+    removes Hebrew stopwords.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Depends:
+    R (>= 4.0)
+Imports:
+    httr (>= 1.4.0),
+    jsonlite (>= 1.7.0),
+    utils,
+    stats
+Suggests:
+    quanteda (>= 3.0),
+    quanteda.textstats,
+    stopwords,
+    processx (>= 3.5),
+    testthat (>= 3.0.0),
+    tibble,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/almogsi/yappr
+BugReports: https://github.com/almogsi/yappr/issues
+SystemRequirements: YAP (https://github.com/OnlpLab/yap) running as a local
+    server. On Windows, install and run YAP inside WSL; native Windows
+    builds of YAP do not currently produce a working Hebrew tokenizer.
+Config/testthat/edition: 3
+Collate:
+    'HebrewNLP-package.R'
+    'yappr-package.R'
+    'utils.R'
+    'yap_parse.R'
+    'yap_server.R'
+    'yap_to_tokens.R'
+    'zzz.R'
